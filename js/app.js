@@ -2,8 +2,9 @@ let tasks = [];
 
 const addTask = () => {
   const taskInput = document.getElementById("taskInput");
-  const text = taskInput.value.trim();
+  const text = taskInput.value.trim(); // trim() menghapus spasi awal dan akhir
 
+  // Kondisi jika text tidak kosong
   if (text) {
     tasks.push({
       text: text,
@@ -11,17 +12,18 @@ const addTask = () => {
     });
 
     updateTaskList();
-    taskInput.value = "";
+    taskInput.value = ""; // Mengkosongkan inputan
   }
 };
 
 const toggleTaskComplete = (index) => {
+  // tasks[index].completed akan diubah ke kebalikan dari nilai saat ini (jika true menjadi false, dan sebaliknya).
   tasks[index].completed = !tasks[index].completed;
   updateTaskList();
 };
 
 const deleteTask = (index) => {
-  tasks.splice(index, 1);
+  tasks.splice(index, 1); // Menghapus satu elemen dari array pada posisi index
   updateTaskList();
 };
 
@@ -56,12 +58,15 @@ const updateTaskList = () => {
       </div>
     `;
 
+    // Memanggil toggleTaskComplete ketika status checkbox berubah
     listItem.addEventListener("change", () => toggleTaskComplete(index));
+    // Setiap elemen <li> yang dibuat kemudian ditambahkan ke taskList.
     taskList.append(listItem);
   });
 };
 
 document.getElementById("newTask").addEventListener("click", function (e) {
+  // e.preventDefault() digunakan untuk mencegah perilaku default dari tombol (misalnya, mengirim form)
   e.preventDefault();
 
   addTask();
