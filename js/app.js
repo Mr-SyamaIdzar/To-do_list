@@ -11,11 +11,26 @@ const addTask = () => {
     });
 
     updateTaskList();
+    taskInput.value = "";
   }
 };
 
 const toggleTaskComplete = (index) => {
   tasks[index].completed = !tasks[index].completed;
+  updateTaskList();
+};
+
+const deleteTask = (index) => {
+  tasks.splice(index, 1);
+  updateTaskList();
+};
+
+const editTask = (index) => {
+  const taskInput = document.getElementById("taskInput");
+  taskInput.value = tasks[index].text;
+
+  tasks.splice(index, 1);
+  updateTaskList();
 };
 
 const updateTaskList = () => {
@@ -26,19 +41,19 @@ const updateTaskList = () => {
     const listItem = document.createElement("li");
 
     listItem.innerHTML = `
-    <div class="taskItem">
-      <div class="task ${task.completed ? "completed" : ""}">
-        <input type="checkbox" class="checkbox" ${
-          task.completed ? "checked" : ""
-        }/>
-        <p>${task.text}</p>
-      </div>
+      <div class="taskItem">
+        <div class="task ${task.completed ? "completed" : ""}">
+          <input type="checkbox" class="checkbox" ${
+            task.completed ? "checked" : ""
+          }/>
+          <p>${task.text}</p>
+        </div>
 
-      <div class="icons">
-        <img src="../assets/edit.png" onClick="editTask(${index})"/>
-        <img src="../assets/bin.png" onClick="deleteTask(${index})"/>
+        <div class="icons">
+          <img src="../assets/edit.png" onClick="editTask(${index})"/>
+          <img src="../assets/bin.png" onClick="deleteTask(${index})"/>
+        </div>
       </div>
-    </div>
     `;
 
     listItem.addEventListener("change", () => toggleTaskComplete(index));
