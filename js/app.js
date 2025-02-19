@@ -1,4 +1,18 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const storageTasks = JSON.parse(localStorage.getItem("tasks"));
+
+  if (storageTasks) {
+    storageTasks.forEach((task) => tasks.push(task));
+    updateTaskList();
+    updateStats();
+  }
+});
+
 let tasks = [];
+
+const saveTasks = () => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
 
 const addTask = () => {
   const taskInput = document.getElementById("taskInput");
@@ -14,6 +28,7 @@ const addTask = () => {
     taskInput.value = ""; // Mengkosongkan inputan
     updateTaskList();
     updateStats();
+    saveTasks();
   }
 };
 
@@ -22,12 +37,14 @@ const toggleTaskComplete = (index) => {
   tasks[index].completed = !tasks[index].completed;
   updateTaskList();
   updateStats();
+  saveTasks();
 };
 
 const deleteTask = (index) => {
   tasks.splice(index, 1); // Menghapus satu elemen dari array pada posisi index
   updateTaskList();
   updateStats();
+  saveTasks();
 };
 
 const editTask = (index) => {
@@ -37,6 +54,7 @@ const editTask = (index) => {
   tasks.splice(index, 1);
   updateTaskList();
   updateStats();
+  saveTasks();
 };
 
 const updateStats = () => {
