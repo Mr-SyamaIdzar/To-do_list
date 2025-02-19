@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <div class="container">
-    <div class="stats-container">
-      <div class="details">
-        <h1>To-do Project</h1>
-        <p>Just do it</p>
-        <div class="stats-numbers">
-          <div id="progressBar">
-            <div id="progress"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="stats-container">
+        <div class="details">
+          <h1>To-do Project</h1>
+          <p>Just do it</p>
+          <div class="stats-numbers">
+            <div id="progressBar">
+              <div id="progress"></div>
+            </div>
           </div>
+        </div>
+
+        <div class="stats-number">
+          <p id="numbers">0 / 0</p>
         </div>
       </div>
 
-      <div class="stats-number">
-        <p id="numbers">2 / 3</p>
-      </div>
+      <form action="">
+        <input type="text" id="taskInput" placeholder="Write your task" />
+        <button type="submit" id="newTask">+</button>
+      </form>
+
+      <ul id="task-list"></ul>
     </div>
 
-    <form action="">
-      <input type="text" id="taskInput" placeholder="Write your task">
-      <button type="submit" id="newTask">+</button>
-    </form>
-
-    <ul id="task-list"></ul>
-  </div>
-
-  <script src="js/app.js"></script>
-</body>
+    <script src="js/app.js"></script>
+  </body>
 </html>

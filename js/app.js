@@ -11,8 +11,9 @@ const addTask = () => {
       completed: false,
     });
 
-    updateTaskList();
     taskInput.value = ""; // Mengkosongkan inputan
+    updateTaskList();
+    updateStats();
   }
 };
 
@@ -20,11 +21,13 @@ const toggleTaskComplete = (index) => {
   // tasks[index].completed akan diubah ke kebalikan dari nilai saat ini (jika true menjadi false, dan sebaliknya).
   tasks[index].completed = !tasks[index].completed;
   updateTaskList();
+  updateStats();
 };
 
 const deleteTask = (index) => {
   tasks.splice(index, 1); // Menghapus satu elemen dari array pada posisi index
   updateTaskList();
+  updateStats();
 };
 
 const editTask = (index) => {
@@ -33,6 +36,25 @@ const editTask = (index) => {
 
   tasks.splice(index, 1);
   updateTaskList();
+  updateStats();
+};
+
+const updateStats = () => {
+  const completeTasks = tasks.filter((task) => task.completed).length;
+  const totalTasks = tasks.length;
+  let progress;
+  if (totalTasks == 0) {
+    progress = 0;
+  } else {
+    progress = (completeTasks / totalTasks) * 100;
+  }
+  const progressBar = document.getElementById("progress");
+
+  progressBar.style.width = `${progress}%`;
+
+  document.getElementById(
+    "numbers"
+  ).innerHTML = `${completeTasks} / ${totalTasks}`;
 };
 
 const updateTaskList = () => {
